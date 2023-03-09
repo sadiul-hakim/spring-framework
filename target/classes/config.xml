@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+">
+    <context:annotation-config/>
+
+    <!--  standalone Collection  -->
+
+    <util:list id="list" list-class="java.util.LinkedList">
+        <value>
+            131332144214
+        </value>
+        <value>
+            3456778788
+        </value>
+
+    </util:list>
+
+    <util:set id="set" set-class="java.util.HashSet">
+        <value>
+            jdnvnsnd
+        </value>
+        <value>
+            sdmvmmvd
+        </value>
+    </util:set>
+
+    <util:map id="map" map-class="java.util.HashMap">
+        <entry key="Java" value="1 Years"/>
+        <entry key="Spring Framework" value="6 Months"/>
+    </util:map>
+
+
+    <!--  autowire-> byName,byType  -->
+    <bean class="org.example.beans.Student" name="student1" scope="prototype">
+<!--        property tag is used for setter injection    -->
+        <property name="studentId" value="1000"/>
+
+        <property name="studentName" value="Hakim"/>
+
+<!--        <property name="studentAddress" ref="address1"/>-->
+
+    </bean>
+
+<!--  Setter injection using 'p' schema  -->
+    <bean
+            class="org.example.beans.Student"
+            name="student2"
+            p:studentId="1001"
+            p:studentName="Sadi"
+            p:studentAddress-ref="address1"
+    />
+
+<!--    Collection Types -->
+    <bean class="org.example.beans.Emp" name="emp1">
+        <property name="name" value="Hakim"/>
+        <property name="phones">
+            <ref bean="list"/>
+        </property>
+        <property name="addresses">
+            <ref bean="set"/>
+        </property>
+        <property name="courses">
+            <ref bean="map"/>
+        </property>
+<!--        <property name="phones">-->
+<!--            <list>-->
+<!--                <value>1637486908</value>-->
+<!--                <value>1304802986</value>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--        <property name="addresses">-->
+<!--            <set>-->
+<!--                <value>Kushtia,Khulna</value>-->
+<!--                <value>Dhaka,Khulna</value>-->
+<!--            </set>-->
+<!--        </property>-->
+<!--        <property name="courses">-->
+<!--            <map>-->
+<!--                <entry key="Java" value="1 Years"/>-->
+<!--                <entry key="Spring Framework" value="6 Months"/>-->
+<!--            </map>-->
+<!--        </property>-->
+    </bean>
+
+
+<!--    Ref Bean -->
+
+    <bean class="org.example.beans.Address" name="address1" p:id="1" p:district="Kushtia" p:division="Khulna"/>
+    <bean class="org.example.beans.Address" name="address2" p:id="2" p:district="Dhaka" p:division="Dhaka"/>
+
+<!-- Constructor Injection Starts   -->
+<!--    init-method,destroy-method -->
+    <bean class="org.example.beans.Person" name="person1">
+        <constructor-arg value="Hakim" index="0"/>
+        <constructor-arg value="12jh"/>
+        <constructor-arg ref="address1"/>
+        <constructor-arg>
+            <list>
+                <value>hakim@gmail.com</value>
+                <value>sadi@gmail.com</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+<!--    <bean class="org.example.beans.Person" name="person2" c:personId="hk123" c:name="Sadi" c:address-ref="address1"/>-->
+
+
+</beans>
