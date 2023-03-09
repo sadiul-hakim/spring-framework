@@ -1,11 +1,5 @@
-package org.example;
+package org.example.beans;
 
-import org.example.beans.Emp;
-import org.example.beans.Person;
-import org.example.annoBean.Student;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Hello world!
